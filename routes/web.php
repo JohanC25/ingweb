@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\UsuarioController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,3 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('/usuarios', UsuarioController::class);
+//Route::get('usuarios', [UsuarioController::class, 'index']);
+//Route::get('usuarios/create', [UsuarioController::class, 'index']);
