@@ -10,7 +10,8 @@ class UsuarioController extends Controller
     
     public function index()
     {
-        return view('usuarios.index');
+        $usuarios = Usuario::all();
+        return view('usuarios.index', ['usuarios' => $usuarios]);
     }
 
     /**
@@ -18,7 +19,7 @@ class UsuarioController extends Controller
      */
     public function create()
     {
-        return view('usuarios.index');
+        return view('usuarios.create');
     }
 
     /**
@@ -27,9 +28,9 @@ class UsuarioController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nombre_usuario' => 'required|unique:usuarios|max:255',
+            'nombre_usuario' => 'required|max:255',
             'contrasenia' => 'required|min:8',
-            'correo' => 'required|correo|unique:usuarios',
+            'correo' => 'required|max:150',
             'nombre' => 'required|max:255',
             'apellido' => 'nullable|max:255',
         ]);
@@ -37,13 +38,14 @@ class UsuarioController extends Controller
         $usuario = new Usuario();
         $usuario->nombre_usuario = $request->input('nombre_usuario');
         $usuario->contrasenia = $request->input('contrasenia');
+        //$usuario->contrasenia = bcrypt($request->input('contrasenia'));
         $usuario->correo = $request->input('correo');
         $usuario->nombre = $request->input('nombre');
         $usuario->apellido = $request->input('apellido');
 
         $usuario->save();
 
-        return view("usuarios.message", ['msg' => "Registro exitoso"]);
+        return redirect()->route('usuarios.index')->with('success', 'Usuario creado exitosamente!');
 
     }
 
@@ -58,24 +60,47 @@ class UsuarioController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Usuario $usuario)
+    public function edit($id)
     {
-        //
+        $usuario = Usuario::find($id);
+
+        return view('usuarios.edit', ['usuario' => $usuario]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Usuario $usuario)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'nombre_usuario' => 'required|max:255',
+            'contrasenia' => 'required|min:8',
+            'correo' => 'required|max:150',
+            'nombre' => 'required|max:255',
+            'apellido' => 'nullable|max:255',
+        ]);
+
+        $usuario = Usuario::find($id);
+        $usuario->nombre_usuario = $request->input('nombre_usuario');
+        $usuario->contrasenia = $request->input('contrasenia');
+        $usuario->correo = $request->input('correo');
+        $usuario->nombre = $request->input('nombre');
+        $usuario->apellido = $request->input('apellido');
+
+        $usuario->save();
+
+        return redirect()->route('usuarios.index')->with('success', 'Usuario creado exitosamente!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Usuario $usuario)
+    public function destroy($id)
     {
-        //
+        $usuario = Usuario::find($id);
+
+        $usuario->delete();
+
+        return redirect("usuarios");
     }
 }
