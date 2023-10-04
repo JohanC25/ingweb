@@ -1,4 +1,5 @@
 *Introducción al Framework MVC - Laravel*
+
 Laravel es un framework PHP que facilita el desarrollo de aplicaciones mediante su estructura MVC (Modelo-Vista-Controlador) y un robusto sistema de paquetes. Este ambiente de desarrollo permite a los programadores enfocarse más en la lógica de la aplicación al simplificar tareas como la instanciación de clases y métodos, promoviendo así un código más limpio y reduciendo la redundancia, especialmente cuando se requieren cambios en el código. Laravel facilita tareas comunes utilizadas en la mayoría de los proyectos web, como la autenticación, enrutamiento, sesiones y almacenamiento en caché, brindando herramientas poderosas necesarias para grandes aplicaciones, y con una inversión de código sorprendentemente ligera.
 
 *Diseño de Ingeniría*
