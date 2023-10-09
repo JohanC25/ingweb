@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Usuario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class UsuarioController extends Controller
 {
@@ -103,4 +105,31 @@ class UsuarioController extends Controller
 
         return redirect("usuarios");
     }
+
+    public function login(Request $request)
+    {
+        if ($request->isMethod('post')) {  // Check if the method is POST
+            $request->validate([
+                'nombre_usuario' => 'required',
+                'contrasenia' => 'required',
+            ]);
+    
+            $credentials = $request->only('nombre_usuario', 'contrasenia');
+    
+            $user = Usuario::where('nombre_usuario', $credentials['nombre_usuario'])->first();
+    
+            if ($user && Hash::check($credentials['contrasenia'], $user->contrasenia)) {
+                Auth::login($user);
+                return route('usuarios.index');
+                //return redirect()->intended('usuarios.index');
+            } else {
+                return back()->withErrors([
+                    'login_error' => 'The provided credentials do not match our records.',
+                ]);
+            }
+        }
+
+        return view('login');
+    }
+
 }

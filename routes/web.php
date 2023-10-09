@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\UsuarioController;
@@ -15,10 +16,16 @@ use App\Http\Controllers\UsuarioController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::resource('/usuarios', UsuarioController::class);
+Route::get('/', [UsuarioController::class, 'login']);
+Route::post('/', [UsuarioController::class, 'login']);
+//Route::get('/usuarios', 'UsuarioController@index')->name('usuarios.index');
+
+
+/*Route::get('/', function () {
+    return view('welcome');
+});*/
 //Route::get('usuarios', [UsuarioController::class, 'index']);
 //Route::get('usuarios/create', [UsuarioController::class, 'index']);
+//Route::get('/', [LoginController::class, 'index']);
+//Route::resource('/', LoginController::class);
