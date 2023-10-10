@@ -13,6 +13,10 @@ En otras palabras, el usuario envía una solicitud(GET,POST, etc.), donde se env
 
 *Diseño del Login*
 
+*Explicación del Login*
+
+Cuando el usuario accede a la pagina web se le presenta el login, en el cual si ya tiene una cuenta puede acceder directamente, caso contrario puede crearse una cuenta. En el login no se puede cambiar la ruta (ejemplo: pasar de la ruta del login "www.ingweb.com" a la ruta "www.ingweb.com/usuarios), además de la validación de que exista el usuario en la base de datos creada anteriormente. 
+
 ![LoginJohanC](https://github.com/JohanC25/ingweb/assets/114593684/0ffe9686-8b35-4481-9625-30f471ba5abe)
 
 En este diseño tenemos la pantalla de Login. El usuario puede crear un usuario o si ya tiene uno, acceder con sus credenciales. El 'auth' de Laravel revisar que el usuario este logueado y evite que el mismo cambie la URL a una a la que no deba o no tenga acceso, como por ejemplo a borrar usuarios mediante URL. Si el usuario existe y es valido accede al sistema, caso contrario se queda en la pantalla de Login hasta que ingrese correctamente las credenciales.
