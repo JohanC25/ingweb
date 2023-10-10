@@ -4,7 +4,9 @@ use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\UsuarioController;
+use Illuminate\Support\Facades\DB;
 
+//DB::get
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,13 +17,18 @@ use App\Http\Controllers\UsuarioController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::view('/login', "login")->name('login');
+Route::view('/registro', "usuarios.create")->name('registro');
+Route::view('/index', "usuarios.index")->middleware('auth')->name('index');
 
-Route::resource('/usuarios', UsuarioController::class);
-Route::get('/', [UsuarioController::class, 'login']);
-Route::post('/', [UsuarioController::class, 'login']);
+Route::post('/validar-registro', [UsuarioController::class, 'index'])->name('validar-registro');
+Route::post('/iniciar-sesion', [UsuarioController::class, 'login'])->name('iniciar-sesion');
+Route::get('/logout', [UsuarioController::class, 'logout'])->name('logout');
+
+/*Route::resource('/usuarios', UsuarioController::class);
+Route::get('/login', [UsuarioController::class, 'login']);
+Route::post('/', [UsuarioController::class, 'login']);*/
 //Route::get('/usuarios', 'UsuarioController@index')->name('usuarios.index');
-
-
 /*Route::get('/', function () {
     return view('welcome');
 });*/

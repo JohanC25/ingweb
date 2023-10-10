@@ -69,11 +69,11 @@
         <h1>Login</h1>
         <br>
         <br>
-        <form action="{{ route('usuarios.index') }}" method="get">
+        <form action="{{ route('iniciar-sesion') }}" method="post">
             @csrf
-            <input type="email" name="email" placeholder="Email" required>
+            <input type="text" name="nombre_usuario" placeholder="Nombre de Usuario" required>
             <div class="password-container">
-                <input type="password" name="password" id="password" placeholder="Password" required>
+                <input type="password" name="contrasenia" id="password" placeholder="Contraseña" required>
                 <span class="toggle-password" id="toggle-password">👁️</span>
             </div>
             <br>
@@ -85,7 +85,7 @@
             <span class="psw">Olvidaste tu <a href="#">contraseña?</a></span>
         </div>
         <div class="container" style="background-color:#f1f1f1">
-            <span class="psw">No tienes cuenta? <a href="{{ route('usuarios.create') }}">Crea una cuenta?</a></span>
+            <span class="psw">No tienes cuenta? <a href="{{ route('registro') }}">Crea una cuenta?</a></span>
         </div>
     </div>
     <script>

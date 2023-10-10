@@ -6,10 +6,12 @@ use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Foundation\Auth\Access\Authorizable;
 
 class UsuarioController extends Controller
 {
-    
+    //use AuthenticateUsers;
     public function index()
     {
         $usuarios = Usuario::all();
@@ -19,9 +21,19 @@ class UsuarioController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('usuarios.create');
+        $usuario = new Usuario();
+
+        $usuario->nombre_usuario = $request->nombre;
+        $usuario->contrasenia = $request->contrasenia;
+
+        $usuario->save();
+
+        Auth::login($usuario);
+
+        return redirect(route('index'));
+        //return view('usuarios.create');
     }
 
     /**
@@ -108,28 +120,31 @@ class UsuarioController extends Controller
 
     public function login(Request $request)
     {
-        if ($request->isMethod('post')) {  // Check if the method is POST
-            $request->validate([
-                'nombre_usuario' => 'required',
-                'contrasenia' => 'required',
-            ]);
-    
-            $credentials = $request->only('nombre_usuario', 'contrasenia');
-    
-            $user = Usuario::where('nombre_usuario', $credentials['nombre_usuario'])->first();
-    
-            if ($user && Hash::check($credentials['contrasenia'], $user->contrasenia)) {
-                Auth::login($user);
-                return route('usuarios.index');
-                //return redirect()->intended('usuarios.index');
-            } else {
-                return back()->withErrors([
-                    'login_error' => 'The provided credentials do not match our records.',
-                ]);
-            }
-        }
+        $credentials = [
+            "nombre_usuario" => $request->nombre_usuario,
+            "contrasenia" => $request->contrasenia,
+        ];
 
-        return view('login');
+        if(Auth::attempt($credentials))
+        {
+            $request->session()->regenerate();
+
+            return redirect()->intended(route('usuarios.index'));
+        }
+        else
+        {
+            return redirect('login');
+        }
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect(route('login'));
     }
 
 }

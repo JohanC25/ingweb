@@ -19,7 +19,7 @@
             </div>
         @endif
 
-        <form action="{{ url('usuarios') }}" method="post">
+        <form action="{{ route('validar-registro') }}" method="post">
             @csrf
 
             <div class="mb-3 row">
