@@ -30,7 +30,7 @@
         <h2>Listado de Usuarios</h2>
 
         <a href="{{ url('usuarios/create') }}" class="btn btn-primary btn-sm">Nuevo Usuario</a>
-        <a href="{{ route('logout') }}" class="btn btn-primary btn-sm">Log Out</a>
+        <a href="{{ route('login') }}" class="btn btn-primary btn-sm">Log Out</a>
     </div>
 
     <table>

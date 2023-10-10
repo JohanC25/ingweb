@@ -19,7 +19,7 @@
             </div>
         @endif
 
-        <form action="{{ route('validar-registro') }}" method="post">
+        <form action="{{ route('usuarios.index') }}" method="post">
             @csrf
 
             <div class="mb-3 row">
@@ -57,7 +57,7 @@
                 </div>
             </div>
 
-            <a href="{{url('usuarios')}}" class="btn btn-secundary">Regresar</a>
+            <a href="{{route('usuarios.index')}}" class="btn btn-secundary">Regresar</a>
 
             <button type="submit" class="btn btn-success">Guardar</button>
         </form>

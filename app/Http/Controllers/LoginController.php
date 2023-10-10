@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Usuario;
 use Illuminate\Http\Request;
 
 class LoginController extends Controller
@@ -10,9 +11,9 @@ class LoginController extends Controller
     {
         return view('login');
     }
-    
-    public function login(Request $request)
+
+    public function userPage()
     {
-        return view('login');
+        return view('usuarios.index');
     }
 }

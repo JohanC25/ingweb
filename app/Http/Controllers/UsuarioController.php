@@ -11,7 +11,6 @@ use Illuminate\Foundation\Auth\Access\Authorizable;
 
 class UsuarioController extends Controller
 {
-    //use AuthenticateUsers;
     public function index()
     {
         $usuarios = Usuario::all();
@@ -21,20 +20,10 @@ class UsuarioController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Request $request)
-    {
-        $usuario = new Usuario();
-
-        $usuario->nombre_usuario = $request->nombre;
-        $usuario->contrasenia = $request->contrasenia;
-
-        $usuario->save();
-
-        Auth::login($usuario);
-
-        return redirect(route('index'));
-        //return view('usuarios.create');
-    }
+    public function create()
+        {
+            return view('usuarios.create');
+        }
 
     /**
      * Store a newly created resource in storage.
@@ -122,19 +111,24 @@ class UsuarioController extends Controller
     {
         $credentials = [
             "nombre_usuario" => $request->nombre_usuario,
-            "contrasenia" => $request->contrasenia,
+            "password" => $request->contrasenia,
         ];
 
         if(Auth::attempt($credentials))
         {
             $request->session()->regenerate();
 
-            return redirect()->intended(route('usuarios.index'));
+            return redirect()->intended(route('login.post'));
         }
         else
         {
-            return redirect('login');
+            return view('login');
         }
+    }
+
+    public function loginPage()
+    {
+        return view('login');
     }
 
     public function logout(Request $request)
