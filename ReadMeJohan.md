@@ -9,3 +9,10 @@ Diagrama arquitectura framework
 
 Este es la arquitectura básica que posee un proyecto en Laravel. Comencemos por el usuario, el cual llama a una ruta en específico y esta ruta tiende a estar atada con un controlador, de ahí el controlador devuelve la vista y llama al modelo para traer o almacenar la información requerida en su base de datos. Este proceso se repite siempre que se navegue por páginas web usando el framework de Laravel.
 En otras palabras, el usuario envía una solicitud(GET,POST, etc.), donde se envía eso a una ruta que nos lleva al controlador respectivo. El controlador llama al modelo, el cual busca información o la almacena dependiendo del caso y lo devuelve al controlador. Este continúa a llenar la vista e imprimir la data solicitada.
+
+
+*Diseño del Login*
+
+![LoginJohanC](https://github.com/JohanC25/ingweb/assets/114593684/0ffe9686-8b35-4481-9625-30f471ba5abe)
+
+En este diseño tenemos la pantalla de Login. El usuario puede crear un usuario o si ya tiene uno, acceder con sus credenciales. El 'auth' de Laravel revisar que el usuario este logueado y evite que el mismo cambie la URL a una a la que no deba o no tenga acceso, como por ejemplo a borrar usuarios mediante URL. Si el usuario existe y es valido accede al sistema, caso contrario se queda en la pantalla de Login hasta que ingrese correctamente las credenciales.
