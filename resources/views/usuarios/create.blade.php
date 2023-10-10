@@ -57,7 +57,7 @@
                 </div>
             </div>
 
-            <a href="{{route('usuarios.index')}}" class="btn btn-secundary">Regresar</a>
+            <a href="{{route('login')}}" class="btn btn-secundary">Regresar</a>
 
             <button type="submit" class="btn btn-success">Guardar</button>
         </form>

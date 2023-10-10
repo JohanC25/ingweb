@@ -9,6 +9,6 @@ use Illuminate\Auth\Events\Login;
 /*Route::get('/', [UsuarioController::class, 'loginPage'])->name('login');
 Route::post('/', [UsuarioController::class, 'login'])->name('login.post');*/
 Route::get('/', [LoginController::class, 'index'])->name('login');
-Route::post('/', [LoginController::class, 'userPage'])->name('userPage');
-Route::get('/usuarios/create', [UsuarioController::class, 'create'])->name('create');
-Route::resource('/usuarios', UsuarioController::class)->middleware('auth')->except('create');
+Route::post('/', [UsuarioController::class, 'index'])->name('userPage');
+//Route::get('/usuarios/create', [UsuarioController::class, 'create'])->name('create');
+Route::resource('/usuarios', UsuarioController::class)->middleware('auth');

@@ -14,6 +14,7 @@ class LoginController extends Controller
 
     public function userPage()
     {
-        return view('usuarios.index');
+        $usuarios = Usuario::all();
+        return url('/usuarios', ['usuarios' => $usuarios]);
     }
 }

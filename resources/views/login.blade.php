@@ -69,7 +69,7 @@
         <h1>Login</h1>
         <br>
         <br>
-        <form action="{{ route('login') }}" method="post">
+        <form action="{{ route('userPage') }}" method="post">
             @csrf
             <input type="text" name="nombre_usuario" placeholder="Nombre de Usuario" required>
             <div class="password-container">
@@ -85,7 +85,7 @@
             <span class="psw">Olvidaste tu <a href="#">contraseña?</a></span>
         </div>
         <div class="container" style="background-color:#f1f1f1">
-            <span>No tienes cuenta? <a href="{{ route('create') }}">Crea una cuenta?</a></span>
+            <span>No tienes cuenta? <a href="{{ url('usuarios/create') }}">Crea una cuenta?</a></span>
         </div>
     </div>
     <script>
