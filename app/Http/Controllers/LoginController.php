@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,7 @@ class LoginController extends Controller
 
     public function userPage()
     {
-        $usuarios = Usuario::all();
+        $usuarios = User::all();
         return url('/usuarios', ['usuarios' => $usuarios]);
     }
 }

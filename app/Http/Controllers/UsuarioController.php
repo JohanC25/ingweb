@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -11,24 +12,24 @@ use Illuminate\Foundation\Auth\Access\Authorizable;
 
 class UsuarioController extends Controller
 {
-    public function index()
+    /*public function index()
     {
-        $usuarios = Usuario::all();
+        $usuarios = User::all();
         return view('usuarios.index', ['usuarios' => $usuarios]);
     }
-
+    */
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    /*public function create()
         {
             return view('usuarios.create');
         }
-
+        */
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    /*public function store(Request $request)
     {
         $request->validate([
             'nombre_usuario' => 'required|max:255',
@@ -50,7 +51,7 @@ class UsuarioController extends Controller
 
         return redirect()->route('usuarios.index')->with('success', 'Usuario creado exitosamente!');
 
-    }
+    }*/
 
     /**
      * Display the specified resource.
@@ -65,9 +66,9 @@ class UsuarioController extends Controller
      */
     public function edit($id)
     {
-        $usuario = Usuario::find($id);
+        /*usuario = Usuario::find($id);
 
-        return view('usuarios.edit', ['usuario' => $usuario]);
+        return view('usuarios.edit', ['usuario' => $usuario]);*/
     }
 
     /**
@@ -75,7 +76,7 @@ class UsuarioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
+        /*$request->validate([
             'nombre_usuario' => 'required|max:255',
             'contrasenia' => 'required|min:8',
             'correo' => 'required|max:150',
@@ -92,7 +93,7 @@ class UsuarioController extends Controller
 
         $usuario->save();
 
-        return redirect()->route('usuarios.index')->with('success', 'Usuario creado exitosamente!');
+        return redirect()->route('usuarios.index')->with('success', 'Usuario creado exitosamente!');*/
     }
 
     /**
@@ -100,16 +101,16 @@ class UsuarioController extends Controller
      */
     public function destroy($id)
     {
-        $usuario = Usuario::find($id);
+        /*$usuario = Usuario::find($id);
 
         $usuario->delete();
 
-        return redirect("usuarios");
+        return redirect("usuarios");*/
     }
 
     public function login(Request $request)
     {
-        $credentials = [
+        /*$credentials = [
             "nombre_usuario" => $request->nombre_usuario,
             "password" => $request->contrasenia,
         ];
@@ -123,10 +124,10 @@ class UsuarioController extends Controller
         else
         {
             return view('login');
-        }
+        }*/
     }
 
-    public function loginPage()
+    /*public function loginPage()
     {
         return view('login');
     }
@@ -139,6 +140,6 @@ class UsuarioController extends Controller
         $request->session()->regenerateToken();
 
         return redirect(route('login'));
-    }
+    }*/
 
 }
