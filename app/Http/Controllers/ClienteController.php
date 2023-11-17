@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreClienteRequest;
+use App\Http\Requests\UpdateClienteRequest;
 use App\Models\Cliente;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -14,12 +16,13 @@ class ClienteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    function __construct()
+    public function __construct()
     {
-         $this->middleware('permission:client-list|client-create|client-edit|client-delete', ['only' => ['index','show']]);
-         $this->middleware('permission:client-create', ['only' => ['create','store']]);
-         $this->middleware('permission:client-edit', ['only' => ['edit','update']]);
-         $this->middleware('permission:client-delete', ['only' => ['destroy']]);
+       $this->middleware('auth');
+       $this->middleware('permission:create-cliente|edit-cliente|delete-cliente', ['only' => ['index','show']]);
+       $this->middleware('permission:create-cliente', ['only' => ['create','store']]);
+       $this->middleware('permission:edit-cliente', ['only' => ['edit','update']]);
+       $this->middleware('permission:delete-cliente', ['only' => ['destroy']]);
     }
     /**
      * Display a listing of the resource.
@@ -28,9 +31,9 @@ class ClienteController extends Controller
      */
     public function index(): View
     {
-        $clientes = Cliente::latest()->paginate(5);
-        return view('clientes.index',compact('clientes'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('clientes.index', [
+            'clientes' => Cliente::latest()->paginate(3),
+        ]);
     }
 
     /**
@@ -49,22 +52,12 @@ class ClienteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request): RedirectResponse
+    public function store(StoreClienteRequest $request): RedirectResponse
     {
-        request()->validate([
-            'nombre' => 'required|max:255',
-            'apellido' => 'required|max:255',
-            'correo' => 'required|email|unique:clientes,correo',
-            'celular' => 'required|max:255',
-            'direccion' => 'nullable',
-        ]);
-    
         Cliente::create($request->all());
-
-        return redirect()->route('clientes.index')
-                         ->with('success', 'Cliente creado con éxito.');
+        return redirect()->route('clientes.create')
+                ->withSuccess('New client is added successfully.');
     }
-
     /**
      * Display the specified resource.
      *
@@ -95,21 +88,12 @@ class ClienteController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function update(Request $request, Cliente $cliente): RedirectResponse
-    {
-         request()->validate([
-            'nombre' => 'required|max:255',
-            'apellido' => 'required|max:255',
-            'correo' => 'required|email|unique:clientes,correo,'.$cliente->id,
-            'celular' => 'required|max:255',
-            'direccion' => 'nullable',
-        ]);
-    
-        $cliente->update($request->all());
-    
-        return redirect()->route('clientes.index')
-                         ->with('success', 'Cliente actualizado con éxito.');
-    }
+     public function update(UpdateClienteRequest $request, Cliente $cliente): RedirectResponse
+     {
+         $cliente->update($request->all());
+         return redirect()->back()
+                 ->withSuccess('Client is updated successfully.');
+     }
 
     /**
      * Elimina un cliente de la base de datos.
