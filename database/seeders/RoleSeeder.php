@@ -25,6 +25,9 @@ class RoleSeeder extends Seeder
             'edit-role',
             'delete-role',
             'delete-cliente',
+            'create-equipo',
+            'edit-equipo',
+            'delete-equipo',
         ]);
 
         $empleado->givePermissionTo([
