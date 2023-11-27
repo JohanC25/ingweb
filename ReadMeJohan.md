@@ -23,6 +23,7 @@ En este diseño tenemos la pantalla de Login. El usuario puede crear un usuario 
 
 *Explicación Funcionamiento Admin*
 
-![AdminMVC](https://github.com/JohanC25/ingweb/assets/114593684/98e8405f-7687-4eb2-bde1-28aa9c6d7a48)
+![AdminMVC1](https://github.com/JohanC25/ingweb/assets/114593684/3700e97b-5e81-40f0-8aac-e0c37339ccb2)
 
-En este diagrama se puede ver como se hace un inicio de sesion con las credenciales creadas anteriormente, en caso de que la credencial (correo y contraseña) pertenezcan a una cuenta de Administrador, este podrá gestionar tanto usuarios como los roles pero no puede gestionar los clientes de la empresa. Por otro lado si no es Administrador y es un usuario Empleado, este podrá gestionar los clientes de la empresa y no podrá gestionar roles ni usuarios. El empleado solo puede visualizar los usuarios existentes. Las validaciones de si es admin o empleado recaen en el controlador donde esta una lista de las acciones que puede realizar los usuarios y los que tengan registrado en la BD, son las acciones que se le permiten en la pantalla. Por ejemplo, si el usuario 'Juan' tiene todos los permisos para realizar crud de clientes, este podrá gestionar clientes sino solo podrá ver la lista de clientes.
+
+Este diagrama de administración por roles y permisos muestra como cada rol posee diferentes permisos para interactuar en el sistema. Mientras que el que posea Admin o Superadmin tienen acceso a todas las gestiones del sistema, el empleado solo tiene acceso a gestionar las actividades del negocio y no a los usuarios ya que ese no es su campo de trabajo. Cada usuario es consedido diferentes roles y en los roles se conceden diferentes permisos para interactuar en el sistema.Todo esto es validado por el front y backend de la aplicación y tiene un diseño minimalista para que el usuario no se pierda.
