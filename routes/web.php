@@ -7,6 +7,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\EquipoController;
+use App\Http\Controllers\ReporteController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -22,4 +23,6 @@ Route::resources([
     'clientes' => ClienteController::class,
     'equipos' => EquipoController::class,
 ]);
+
+Route::get('/reportes', [ReporteController::class, 'index'])->name('reportes');
 

@@ -13,6 +13,8 @@
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link href="/resources/css/tablas.css" rel="stylesheet">
+    
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
@@ -49,6 +51,9 @@
                                 </li>
                             @endif
                         @else
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('reportes') }}">{{ __('Reporte') }}</a>
+                            </li>
                             @canany(['create-role', 'edit-role', 'delete-role'])
                                 <li><a class="nav-link" href="{{ route('roles.index') }}">Manage Roles</a></li>
                             @endcanany
