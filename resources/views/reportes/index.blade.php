@@ -1,5 +1,8 @@
 @extends('layouts.app')
-<link href="/resources/css/tablas.css" rel="stylesheet">
+
+@section('head')
+    <link href="{{ asset('css/tablas.css') }}" rel="stylesheet">
+@endsection
 
 @section('content')
     <h1>Reporte de Clientes y Equipos</h1>

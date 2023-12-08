@@ -16,4 +16,14 @@ class ReporteController extends Controller
 
         return view('reportes.index', compact('clientes'));
     }
+
+    private function calcularMontoTotal($equipo)
+    {
+        $montoTotal = 0;
+        if ($equipo->multa) {
+            $montoTotal += $equipo->multa;
+        }
+
+        return $montoTotal;
+    }
 }
