@@ -62,6 +62,7 @@
                         </div>
                     </div>
 
+                    <!-- Fecha de Entrega -->
                     <div class="mb-3 row">
                         <label for="fecha_entrega" class="col-md-4 col-form-label text-md-end text-start">Fecha de Entrega</label>
                         <div class="col-md-6">
@@ -83,6 +84,22 @@
                         </div>
                     </div>
 
+                    <!-- Cliente -->
+                    <div class="mb-3 row">
+                        <label for="id_cliente" class="col-md-4 col-form-label text-md-end text-start">Cliente</label>
+                        <div class="col-md-6">
+                            <select class="form-control @error('id_cliente') is-invalid @enderror" id="id_cliente" name="id_cliente">
+                                <option value="">Seleccione un Cliente</option>
+                                @foreach ($clientes as $cliente)
+                                    <option value="{{ $cliente->id }}" {{ old('id_cliente') == $cliente->id ? 'selected' : '' }}>{{ $cliente->nombre }}</option>
+                                @endforeach
+                            </select>
+                            @error('id_cliente')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+
                     <!-- Botón de Envío -->
                     <div class="mb-3 row">
                         <input type="submit" class="col-md-3 offset-md-5 btn btn-primary">
@@ -93,5 +110,5 @@
         </div>
     </div>    
 </div>
-    
+
 @endsection

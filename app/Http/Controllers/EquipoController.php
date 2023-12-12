@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Equipo;
 use App\Http\Requests\StoreEquipoRequest;
 use App\Http\Requests\UpdateEquipoRequest;
+use App\Models\Cliente;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
 
@@ -15,11 +16,11 @@ class EquipoController extends Controller
      */
     public function __construct()
     {
-       $this->middleware('auth');
-       $this->middleware('permission:create-equipo|edit-equipo|delete-equipo', ['only' => ['index','show']]);
-       $this->middleware('permission:create-equipo', ['only' => ['create','store']]);
-       $this->middleware('permission:edit-equipo', ['only' => ['edit','update']]);
-       $this->middleware('permission:delete-equipo', ['only' => ['destroy']]);
+        $this->middleware('auth');
+        $this->middleware('permission:create-equipo|edit-equipo|delete-equipo', ['only' => ['index', 'show']]);
+        $this->middleware('permission:create-equipo', ['only' => ['create', 'store']]);
+        $this->middleware('permission:edit-equipo', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:delete-equipo', ['only' => ['destroy']]);
     }
 
     /**
@@ -37,8 +38,10 @@ class EquipoController extends Controller
      */
     public function create(): View
     {
-        return view('equipos.create');
+        $clientes = Cliente::all(); // Obtener todos los clientes
+        return view('equipos.create', compact('clientes'));
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -47,7 +50,7 @@ class EquipoController extends Controller
     {
         Equipo::create($request->all());
         return redirect()->route('equipos.index')
-                ->withSuccess('New equipo is added successfully.');
+            ->withSuccess('New equipo is added successfully.');
     }
 
     /**
@@ -65,6 +68,7 @@ class EquipoController extends Controller
      */
     public function edit(Equipo $equipo): View
     {
+        $equipo->load('cliente');
         return view('equipos.edit', [
             'equipo' => $equipo
         ]);
@@ -77,7 +81,7 @@ class EquipoController extends Controller
     {
         $equipo->update($request->all());
         return redirect()->back()
-                ->withSuccess('Equipo is updated successfully.');
+            ->withSuccess('Equipo is updated successfully.');
     }
 
     /**
@@ -87,6 +91,6 @@ class EquipoController extends Controller
     {
         $equipo->delete();
         return redirect()->route('equipos.index')
-                ->withSuccess('Equipo is deleted successfully.');
+            ->withSuccess('Equipo is deleted successfully.');
     }
 }
