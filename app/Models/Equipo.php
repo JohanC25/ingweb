@@ -21,6 +21,12 @@ class Equipo extends Model
         'multa',
     ];
 
+    protected $dates = [
+        'fecha_recepcion',
+        'fecha_entrega',
+        'fecha_retiro',
+    ];
+
     public function cliente()
     {
         return $this->belongsTo(Cliente::class, 'id_cliente');

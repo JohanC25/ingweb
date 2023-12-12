@@ -89,7 +89,7 @@
                     <div class="mb-3 row">
                         <label for="equipo_retirado" class="col-md-4 col-form-label text-md-end text-start">Equipo Retirado</label>
                         <div class="col-md-6">
-                            <input type="checkbox" class="@error('equipo_retirado') is-invalid @enderror" id="equipo_retirado" name="equipo_retirado" value="1" {{ $equipo->equipo_retirado ? 'checked' : '' }}>
+                            <input type="checkbox" class="@error('equipo_retirado') is-invalid @enderror" id="equipo_retirado" name="equipo_retirado" value="1" {{ $equipo->equipo_retirado ? 'checked' : '0' }}>
                             @error('equipo_retirado')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror

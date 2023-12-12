@@ -26,3 +26,6 @@ Route::resources([
 
 Route::get('/reportes', [ReporteController::class, 'index'])->name('reportes');
 
+Route::get('/reportes/search', [ReporteController::class, 'search'])->name('reportes.search');
+
+

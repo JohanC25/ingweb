@@ -24,7 +24,7 @@ class UpdateClienteRequest extends FormRequest
         return [
             'nombre' => 'required|string|max:255',
             'apellido' => 'required|string|max:255',
-            'correo' => 'required|string|email|max:255|unique:cliente,correo',
+            'correo' => 'required|string|email|max:255|',
             'celular' => 'required|string|max:255',
             'direccion' => 'nullable|string',
         ];

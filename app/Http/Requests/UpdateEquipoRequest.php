@@ -28,7 +28,7 @@ class UpdateEquipoRequest extends FormRequest
             'fecha_recepcion' => 'required|date',
             'fecha_entrega' => 'nullable|date',
             'fecha_retiro' => 'nullable|date',
-            'equipo_retirado' => 'required|boolean',
+            'equipo_retirado' => 'boolean',
             'id_cliente' => 'required|exists:cliente,id',
             'multa' => 'nullable|numeric|min:0|max:999999.99',
         ];

@@ -23,5 +23,10 @@ class Cliente extends Model
         'direccion',
     ];
 
+    public function equipos()
+    {
+        return $this->hasMany(Equipo::class, 'id_cliente');
+    }
+
     
 }
