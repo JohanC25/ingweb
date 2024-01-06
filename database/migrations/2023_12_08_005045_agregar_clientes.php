@@ -33,6 +33,13 @@ return new class extends Migration
                 'correo' => 'carlos.gonzalez@example.com',
                 'celular' => '1122334455',
                 'direccion' => null
+            ],
+            [
+                'nombre' => 'Mario',
+                'apellido' => 'Agusto',
+                'correo' => 'mario@hotmail.com',
+                'celular' => '0998875678',
+                'direccion' => null
             ]
         ]);
     }
