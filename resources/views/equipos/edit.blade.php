@@ -11,6 +11,16 @@
                     </div>
                 </div>
                 <div class="card-body">
+                        <!-- Bloque para mostrar errores de validación -->
+                        @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <form action="{{ route('equipos.update', $equipo->id) }}" method="post">
                         @csrf
                         @method('PUT')
@@ -65,19 +75,30 @@
                         </div>
 
                         <div class="mb-3 row">
-                            <label for="cliente_nombre" class="col-md-4 col-form-label text-md-end">Nombre del
-                                Cliente</label>
+                            <label for="cliente_nombre" class="col-md-4 col-form-label text-md-end">Nombre del Cliente</label>
                             <div class="col-md-6">
                                 <input type="text" class="form-control" id="cliente_nombre" name="cliente_nombre"
-                                    value="{{ $equipo->cliente->nombre ?? 'No asignado' }}" disabled>
+                                    value="{{ $equipo->cliente->nombre ?? 'No asignado' }}" readonly>
                             </div>
                         </div>
+
+                        <input type="hidden" name="id_cliente" value="{{ $equipo->cliente->id ?? '' }}">
 
                         <div class="mb-3 row">
                             <label for="equipo_retirado" class="col-md-4 col-form-label text-md-end">Equipo Retirado</label>
                             <div class="col-md-6">
-                                <input type="checkbox" id="equipo_retirado" name="equipo_retirado"
-                                    {{ $equipo->equipo_retirado ? 'checked' : '' }}>
+                                <input type="hidden" name="equipo_retirado" value="0">
+                                <input type="checkbox" id="equipo_retirado" name="equipo_retirado" value="1" {{ $equipo->equipo_retirado ? 'checked' : '' }}>
+                            </div>
+                        </div>
+
+                        <div class="mb-3 row">
+                            <label for="monto_pagar" class="col-md-4 col-form-label text-md-end">Monto a Pagar</label>
+                            <div class="col-md-6">
+                                <input type="number" class="form-control @error('monto_pagar') is-invalid @enderror" id="monto_pagar" name="monto_pagar" value="{{ old('monto_pagar', $equipo->monto_pagar) }}">
+                                @error('monto_pagar')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                         </div>
 

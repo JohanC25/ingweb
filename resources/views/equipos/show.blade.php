@@ -75,13 +75,27 @@
                 <div class="row">
                     <label for="multa" class="col-md-4 col-form-label text-md-end text-start"><strong>Multa:</strong></label>
                     <div class="col-md-6" style="line-height: 35px;">
-                        {{ $equipo->multa }}
+                        {{ number_format($equipo->multa ?? 0, 2) }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <label for="monto_pagar" class="col-md-4 col-form-label text-md-end text-start"><strong>Monto a Pagar:</strong></label>
+                    <div class="col-md-6" style="line-height: 35px;">
+                        {{ number_format($equipo->monto_pagar, 2) }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <label for="total_pagar" class="col-md-4 col-form-label text-md-end text-start"><strong>Total a Pagar:</strong></label>
+                    <div class="col-md-6" style="line-height: 35px;">
+                        {{ $equipo->multa ? number_format($equipo->multa + $equipo->monto_pagar, 2) : number_format($equipo->monto_pagar, 2) }}
                     </div>
                 </div>
 
             </div>
         </div>
-    </div>    
+    </div>
 </div>
-    
+
 @endsection

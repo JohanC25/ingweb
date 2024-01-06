@@ -100,15 +100,27 @@
                         </div>
                     </div>
 
+
+                    <!-- Monto a Pagar -->
+                    <div class="mb-3 row">
+                        <label for="monto_pagar" class="col-md-4 col-form-label text-md-end text-start">Monto a Pagar</label>
+                        <div class="col-md-6">
+                            <input type="number" step="0.01" class="form-control @error('monto_pagar') is-invalid @enderror" id="monto_pagar" name="monto_pagar" value="{{ old('monto_pagar') }}">
+                            @error('monto_pagar')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+
                     <!-- Botón de Envío -->
                     <div class="mb-3 row">
                         <input type="submit" class="col-md-3 offset-md-5 btn btn-primary">
                     </div>
-                    
+
                 </form>
             </div>
         </div>
-    </div>    
+    </div>
 </div>
 
 @endsection

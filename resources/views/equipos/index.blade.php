@@ -20,6 +20,7 @@
                     <th scope="col">Equipo Retirado</th>
                     <th scope="col">Cliente</th>
                     <th scope="col">Multa</th>
+                    <th>Total a Pagar</th>
                     <th scope="col">Acciones</th>
                 </tr>
             </thead>
@@ -34,8 +35,9 @@
                     <td>{{ $equipo->fecha_entrega }}</td>
                     <td>{{ $equipo->fecha_retiro }}</td>
                     <td>{{ $equipo->equipo_retirado ? 'Sí' : 'No' }}</td>
-                    <td>{{ $equipo->cliente->nombre }}</td> <!-- Asumiendo que cada equipo tiene un cliente asociado -->
+                    <td>{{ $equipo->cliente->nombre }}</td>
                     <td>{{ $equipo->multa }}</td>
+                    <td>{{ $equipo->multa ? $equipo->multa + $equipo->monto_pagar : $equipo->monto_pagar }}</td>
                     <td>
                         <form action="{{ route('equipos.destroy', $equipo->id) }}" method="post">
                             @csrf

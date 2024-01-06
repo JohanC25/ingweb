@@ -19,6 +19,7 @@ class Equipo extends Model
         'equipo_retirado',
         'id_cliente',
         'multa',
+        'monto_pagar',
     ];
 
     protected $dates = [

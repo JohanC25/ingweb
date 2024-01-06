@@ -31,6 +31,7 @@ class StoreEquipoRequest extends FormRequest
             'equipo_retirado' => 'boolean',
             'id_cliente' => 'required|exists:cliente,id',
             'multa' => 'nullable|numeric|min:0|max:999999.99',
+            'monto_pagar' => 'nullable|numeric|min:0|max:999999.99',
         ];
     }
 }

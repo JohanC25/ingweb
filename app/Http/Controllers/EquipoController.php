@@ -8,6 +8,9 @@ use App\Http\Requests\UpdateEquipoRequest;
 use App\Models\Cliente;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Log;
+
+//use Illuminate\Support\Facades\Log;
 
 class EquipoController extends Controller
 {
@@ -29,7 +32,7 @@ class EquipoController extends Controller
     public function index(): View
     {
         return view('equipos.index', [
-            'equipos' => Equipo::latest()->paginate(3)
+            'equipos' => Equipo::latest()->paginate(10)
         ]);
     }
 
@@ -79,10 +82,35 @@ class EquipoController extends Controller
      */
     public function update(UpdateEquipoRequest $request, Equipo $equipo): RedirectResponse
     {
+        // Convertir la entrada a una instancia de Carbon.
+        $fechaRetiro = \Carbon\Carbon::createFromFormat('Y-m-d', $request->input('fecha_retiro'));
+        $fechaEntrega = \Carbon\Carbon::createFromFormat('Y-m-d', $equipo->fecha_entrega);
+
+        // Comprobar si la fecha de retiro es después de la fecha de entrega.
+        if ($fechaRetiro->isAfter($fechaEntrega)) {
+            // Calcular la multa como el 25% del monto a pagar.
+            $multa = $equipo->monto_pagar * 0.25;
+
+            //Log::info("Multa calculada: {$multa}");
+
+            // Establecer la multa en el equipo.
+            $equipo->multa = $multa;
+
+            // Actualizar el monto a pagar si se aplica la multa.
+            //$equipo->monto_pagar += $multa;
+        } else {
+            // Si no hay multa, asegurarse de que el valor de multa sea cero.
+            $equipo->multa = 0;
+        }
+
+        // Actualizar el equipo con los datos del formulario.
         $equipo->update($request->all());
+
+        // Redirigir a la página anterior con un mensaje de éxito.
         return redirect()->back()
-            ->withSuccess('Equipo is updated successfully.');
+            ->withSuccess('Equipo actualizado correctamente.');
     }
+
 
     /**
      * Remove the specified resource from storage.

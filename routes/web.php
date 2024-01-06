@@ -28,4 +28,4 @@ Route::get('/reportes', [ReporteController::class, 'index'])->name('reportes');
 
 Route::get('/reportes/search', [ReporteController::class, 'search'])->name('reportes.search');
 
-
+Route::get('/reportes/pdf', [ReporteController::class, 'downloadPdf'])->name('reportes.pdf');
