@@ -26,4 +26,24 @@ En este diseño tenemos la pantalla de Login. El usuario puede crear un usuario 
 ![AdminMVC1](https://github.com/JohanC25/ingweb/assets/114593684/3700e97b-5e81-40f0-8aac-e0c37339ccb2)
 
 
-Este diagrama de administración por roles y permisos muestra como cada rol posee diferentes permisos para interactuar en el sistema. Mientras que el que posea Admin o Superadmin tienen acceso a todas las gestiones del sistema, el empleado solo tiene acceso a gestionar las actividades del negocio y no a los usuarios ya que ese no es su campo de trabajo. Cada usuario es consedido diferentes roles y en los roles se conceden diferentes permisos para interactuar en el sistema.Todo esto es validado por el front y backend de la aplicación y tiene un diseño minimalista para que el usuario no se pierda.
+Este diagrama de administración por roles y permisos muestra como cada rol posee diferentes pbermisos para interactuar en el sistema. Mientras que el que posea Admin o Superadmin tienen acceso a todas las gestiones del sistema, el empleado solo tiene acceso a gestionar las actividades del negocio y no a los usuarios ya que ese no es su campo de trabajo. Cada usuario es consedido diferentes roles y en los roles se conceden diferentes permisos para interactuar en el sistema.Todo esto es validado por el front y backend de la aplicación y tiene un diseño minimalista para que el usuario no se pierda.
+
+
+*Item diseño ingeniería*
+
+Diagrama actividades del core:
+![DiagramaActividadesCore1 drawio](https://github.com/JohanC25/ingweb/assets/114593684/056e9c46-e53b-4568-8c2e-d404b77141be)
+
+Diagrama actividades de la defensa:
+![DiagramaActividadesDefensa drawio](https://github.com/JohanC25/ingweb/assets/114593684/4703fc2a-19ab-4751-862f-abc442b7c775)
+
+Link de grabaciones: 
+1. https://udlaec.sharepoint.com/sites/Section_2867496871/Shared%20Documents/General/Recordings/Ingenieria%20Web%2001%202024-20240106_093829-Grabaci%C3%B3n%20de%20la%20reuni%C3%B3n.mp4
+2. https://udlaec.sharepoint.com/sites/Section_2867496871/Shared%20Documents/General/Recordings/Ingenieria%20Web%2001%202024-20240106_093829-Grabaci%C3%B3n%20de%20la%20reuni%C3%B3n.mp4
+
+Link de deploy:
+https://hammerhead-app-ndxxk.ondigitalocean.app/
+
+Credenciales de prueba:
+Username: johanSuperAdmin@hotmail.com
+Password: johan12345
